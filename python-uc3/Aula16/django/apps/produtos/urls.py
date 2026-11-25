@@ -6,12 +6,15 @@ from django.urls import path
 # CategoriasListarView, ClientesListarView, PedidosListarView,ProdutosListarView,
 from .views import (
     ProdutoListView,
+    ProdutosDetailView,
 )
 
 app_name = "produtos"
 
 urlpatterns = [
     path("", ProdutoListView.as_view(), name="lista"),
+    path("itens/", ProdutoListView.as_view(), name="produtos_listar"),
+    path("itens/<int:pk>/", ProdutosDetailView.as_view(), name="detalhes"),
     #path("listar/", ProdutosListarView.as_view(), name="produtos_listar"),
     #path("categorias/", CategoriasListarView.as_view(), name="categorias_listar"),
     #path("clientes/", ClientesListarView.as_view(), name="clientes_listar"),

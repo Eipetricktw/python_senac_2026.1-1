@@ -10,7 +10,7 @@ OBJETIVO:
 # - Consultar o banco de dados
 # - Paginar ou filtrar registros (se necessário)
 # - Enviar os dados para um arquivo HTML (template)
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView
 
 # 2. IMPORTAÇÕES DOS NOSSOS MODELOS
 # Importamos as tabelas/classes definidas no arquivo models.py do mesmo app (.)
@@ -43,6 +43,12 @@ class ProdutosListarView(ListView):
     queryset = Produto.objects.select_related("categoria")
 
 
+
+class ProdutosDetailView(DetailView):
+    model= Produto
+    template_name= "produtos/produto_detail.html"
+    context_object_name= "produto"
+    queryset= Produto.objects.select_related("categoria")
 # ==============================================================================
 # VIEW 3: Listagem de Categorias
 # ==============================================================================
