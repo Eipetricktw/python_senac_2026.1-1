@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Categoria | Pé na estrada{% endblock%}
+
+{% block content %}
+    <table>
+        {% for categoria in categorias %}
+            <tr> 
+                <td>{{ categoria.nome }}</td> 
+                <td>{{ categoria.descricao }}</td>
+            </tr>
+        {% empty %}
+            <tr> 
+
+            <td> Nao é produtos cadastrado </td>
+
+            </tr> 
+        {% endfor %}
+        </table>
+{% endblock %}

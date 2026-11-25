@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Clientes | Pé na estrada{% endblock%}
+
+{% block content %}
+    <table>
+        {% for cliente in clientes %}
+            <tr> 
+                <td>{{cliente.nome}}</td> 
+                <td>{{cliente.descricao}}</td>
+            </tr>
+        {% empty %}
+            <tr> 
+
+            <td> Nao é clientes cadastrado </td>
+
+            </tr> 
+        {% endfor %}
+        </table>
+{% endblock %}
