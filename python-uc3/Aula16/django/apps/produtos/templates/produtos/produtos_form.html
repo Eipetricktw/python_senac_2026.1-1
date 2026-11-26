@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+<!-- {% load cryspy_forms_tags %} -->
+
+{% block title %} {{ page_title }} Pé na Estrada {% endblock %}
+
+{% block content %}
+  
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- {{ form crispy }} -->
+          {{ form }}
+
+        <button type="submit" class="btn btn-primary">
+            {{ submit_label }}
+        </button>
+        <a href="{% url 'produtos_listar' %}"
+            class="btn btn-outline-secondary">
+            Cancelar
+        </a>
+    </form>
+{% endblock %}

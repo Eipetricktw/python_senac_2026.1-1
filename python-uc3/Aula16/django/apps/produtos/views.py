@@ -10,12 +10,14 @@ OBJETIVO:
 # - Consultar o banco de dados
 # - Paginar ou filtrar registros (se necessário)
 # - Enviar os dados para um arquivo HTML (template)
-from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
 
 # 2. IMPORTAÇÕES DOS NOSSOS MODELOS
 # Importamos as tabelas/classes definidas no arquivo models.py do mesmo app (.)
 from .models import Categoria, Cliente, Pedido, Produto
+from .forms import ProdutoForm
 
+from django.urls import reverse_lazy
 ##
 # CBV
 # FBV
@@ -49,6 +51,19 @@ class ProdutosDetailView(DetailView):
     template_name= "produtos/produto_detail.html"
     context_object_name= "produto"
     queryset= Produto.objects.select_related("categoria")
+
+class ProdutoDeleteView(DeleteView):
+    model = Produto
+    template_name = "produtos/produto_confirm_delete.html"
+    context_object_name = "produto"
+    success_url = reverse_lazy("produtos:produtos_listar")
+
+
+class ProdutoCreateView(CreateView):
+    model = Produto
+    form_class = ProdutoForm
+    template_name = "produtos/produto_form.html"
+    success_url = reverse_lazy("produtos:produtos_listar")
 # ==============================================================================
 # VIEW 3: Listagem de Categorias
 # ==============================================================================
